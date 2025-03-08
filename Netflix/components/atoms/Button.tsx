@@ -17,7 +17,8 @@ export default function Button(props: ButtonProps) {
       style={{
         ...styles.button,
         ...(props.containerStyle || {}),
-        backgroundColor: props.backgroundColor,
+        backgroundColor:
+          props.backgroundColor || props.containerStyle?.backgroundColor,
       }}>
       <Typography {...typographyProps}>{props.children}</Typography>
     </TouchableOpacity>

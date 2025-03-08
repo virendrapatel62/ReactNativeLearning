@@ -10,6 +10,7 @@ export interface ITypographyProps extends PropsWithChildren {
   opacity?: TextStyle['opacity'];
   style?: StyleProp<TextStyle>;
   muted?: boolean;
+  center?: boolean;
 }
 
 export default function Typography(props: ITypographyProps) {
@@ -24,6 +25,7 @@ export default function Typography(props: ITypographyProps) {
     ...(props.weight ? {fontWeight: props.weight} : {}),
     ...(props.color ? {color: props.color} : {}),
     ...(props.opacity ? {opacity: props.opacity} : {}),
+    ...(props.center ? {textAlign: 'center'} : {}),
   };
 
   return (
