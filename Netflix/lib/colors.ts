@@ -4,6 +4,9 @@ export const COLORS = {
   BLACK: '#000000',
   WHITE: '#ffffff',
 
+  PRIMARY: '#E50914',
+  MUTED: '#61666c',
+
   INPUT_BORDER: '#61666c',
   INPUT_PLACEHOLDER: '#61666c',
 
