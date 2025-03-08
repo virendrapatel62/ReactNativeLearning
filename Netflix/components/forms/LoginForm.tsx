@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {COLORS} from '../../lib/colors';
 import TextField from '../atoms/TextField';
 import Typography from '../atoms/Typography';
-import Button from './Button';
+import Button from '../atoms/Button';
 
 export default function LoginForm() {
   return (
@@ -22,15 +22,23 @@ export default function LoginForm() {
           placeholder="Email or mobile number"></TextField>
         <TextField secureTextEntry placeholder="Password"></TextField>
 
-        <Button title="Sign In"></Button>
+        <Button
+          containerStyle={styles.button}
+          backgroundColor={COLORS.NETFLIX_RED}
+          color={COLORS.WHITE}>
+          Sign In
+        </Button>
 
         <Typography color={COLORS.WHITE} opacity={0.7} style={styles.or}>
           OR
         </Typography>
 
         <Button
-          containerStyle={styles.useCodeButtonContainer}
-          title="Use a sign-in code"></Button>
+          color={COLORS.WHITE}
+          containerStyle={styles.button}
+          backgroundColor={COLORS.BUTTON_DARK}>
+          Use a sign-in code
+        </Button>
 
         <Typography color={COLORS.WHITE} style={styles.forgotPassword}>
           Forgot password?
@@ -53,9 +61,11 @@ const styles = StyleSheet.create({
   or: {
     textAlign: 'center',
   },
-  useCodeButtonContainer: {
-    backgroundColor: COLORS.BUTTON_DARK,
+  button: {
+    marginTop: 16,
+    marginBottom: 16,
   },
+
   forgotPassword: {
     textDecorationLine: 'underline',
     textAlign: 'center',

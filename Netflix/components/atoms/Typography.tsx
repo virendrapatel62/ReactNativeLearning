@@ -2,7 +2,7 @@ import React, {PropsWithChildren} from 'react';
 import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
 import {COLORS} from '../../lib/colors';
 
-interface ITypographyProps extends PropsWithChildren {
+export interface ITypographyProps extends PropsWithChildren {
   children: string;
   size?: TextStyle['fontSize'];
   weight?: TextStyle['fontWeight'];
