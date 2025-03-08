@@ -1,15 +1,6 @@
 import React, {PropsWithChildren} from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ViewStyle,
-} from 'react-native';
-import {COLORS} from '../../lib/colors';
+import {StyleSheet, TouchableOpacity, ViewStyle} from 'react-native';
 import Typography, {ITypographyProps} from './Typography';
-import {ViewProps} from 'react-native-svg/lib/typescript/fabric/utils';
-import {TouchableProps} from 'react-native-svg';
 
 interface ButtonProps extends PropsWithChildren, ITypographyProps {
   containerStyle?: ViewStyle;
