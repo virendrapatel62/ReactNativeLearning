@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from 'react';
+import React, {PropsWithChildren, ReactElement, ReactNode} from 'react';
 import {StyleSheet, TouchableOpacity, ViewStyle} from 'react-native';
 import Typography, {ITypographyProps} from './Typography';
 
@@ -6,6 +6,7 @@ interface ButtonProps extends PropsWithChildren, ITypographyProps {
   containerStyle?: ViewStyle;
   children: string;
   backgroundColor?: string;
+  icon?: ReactNode;
 }
 
 export default function Button(props: ButtonProps) {
@@ -20,6 +21,7 @@ export default function Button(props: ButtonProps) {
         backgroundColor:
           props.backgroundColor || props.containerStyle?.backgroundColor,
       }}>
+      {props.icon}
       <Typography {...typographyProps}>{props.children}</Typography>
     </TouchableOpacity>
   );
@@ -32,6 +34,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
+    gap: 4,
+
     borderRadius: 4,
   },
 });

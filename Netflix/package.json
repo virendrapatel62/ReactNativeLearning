@@ -10,9 +10,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/lodash.sample": "^4.2.9",
+    "@types/lodash.shuffle": "^4.2.9",
+    "lodash.sample": "^4.2.1",
+    "lodash.shuffle": "^4.2.0",
     "react": "19.0.0",
     "react-native": "0.78.0",
     "react-native-linear-gradient": "^2.8.3",
+    "react-native-shimmer-placeholder": "^2.0.9",
     "react-native-svg": "^15.11.2"
   },
   "devDependencies": {
