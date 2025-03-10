@@ -5,6 +5,38 @@ import HorizontalScrollPosters from '../components/templates/HorizontalScrollPos
 import {movies} from '../lib/movies';
 
 export default function HomeScreen() {
+  const categories = [
+    {
+      title: 'New Releases',
+      posters: movies,
+      width: 120,
+      aspectRatio: 3 / 4,
+    },
+    {
+      title: 'Binge-Worthy',
+      posters: movies,
+      width: 128,
+      aspectRatio: 3 / 4,
+    },
+    {
+      title: 'Popular on Netflix',
+      posters: movies,
+      width: 248,
+      aspectRatio: 16 / 9,
+    },
+    {
+      title: 'Family Favorites',
+      posters: movies,
+      width: 168,
+      aspectRatio: 1 / 2,
+    },
+    {
+      title: 'Award-Winning Movies',
+      posters: movies,
+      width: 248,
+      aspectRatio: 1,
+    },
+  ];
   return (
     <SafeAreaView style={styles.background}>
       <ScrollView style={styles.container}>
@@ -13,41 +45,16 @@ export default function HomeScreen() {
         </View>
 
         <View>
-          <HorizontalScrollPosters
-            shuffle
-            title="New Releases"
-            posters={movies}
-            width={120}
-            aspectRatio={3 / 4}
-          />
-          <HorizontalScrollPosters
-            shuffle
-            title="Binge-Worthy"
-            posters={movies}
-            width={160}
-            aspectRatio={2 / 3}
-          />
-          <HorizontalScrollPosters
-            shuffle
-            title="Popular on Netflix"
-            posters={movies}
-            width={228}
-            aspectRatio={5 / 6}
-          />
-          <HorizontalScrollPosters
-            shuffle
-            title="Family Favorites"
-            posters={movies}
-            width={200}
-            aspectRatio={1 / 1}
-          />
-          <HorizontalScrollPosters
-            shuffle
-            title="Award-Winning Movies"
-            posters={movies}
-            width={328}
-            aspectRatio={16 / 9}
-          />
+          {categories.map(category => (
+            <HorizontalScrollPosters
+              key={category.title}
+              shuffle
+              title={category.title}
+              posters={category.posters}
+              width={category.width}
+              aspectRatio={category.aspectRatio}
+            />
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -4,7 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 
 function App(): React.JSX.Element {
   return <HomeScreen />;
-  return <LoginScreen />;
+  // return <LoginScreen />;
 }
 
 export default App;
