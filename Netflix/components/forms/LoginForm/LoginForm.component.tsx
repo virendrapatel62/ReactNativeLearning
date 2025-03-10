@@ -1,11 +1,13 @@
 import React, {Fragment} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {COLORS} from '../../lib/colors';
-import TextField from '../atoms/TextField';
-import Typography from '../atoms/Typography';
-import Button from '../atoms/Button';
+import {View} from 'react-native';
+import Button from '../../atoms/Button/Button.component';
+import {COLORS} from '../../atoms/colors';
+import TextField from '../../atoms/TextField/TextField.component';
+import Typography from '../../atoms/Typography/Typograpy.component';
+import {styles} from './LoginForm.styles';
+import {ILoginFormProps} from './LoginForm.types';
 
-export default function LoginForm() {
+export default function LoginForm(props: ILoginFormProps) {
   return (
     <Fragment>
       <Typography
@@ -56,24 +58,3 @@ export default function LoginForm() {
     </Fragment>
   );
 }
-
-const styles = StyleSheet.create({
-  or: {
-    textAlign: 'center',
-  },
-  button: {
-    marginTop: 16,
-    marginBottom: 16,
-  },
-
-  forgotPassword: {
-    textDecorationLine: 'underline',
-    textAlign: 'center',
-  },
-  newToNetflixContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 4,
-    marginTop: 40,
-  },
-});

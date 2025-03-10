@@ -1,17 +1,7 @@
-import React, {PropsWithChildren} from 'react';
-import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
-import {COLORS} from '../../lib/colors';
-
-export interface ITypographyProps extends PropsWithChildren {
-  children: string;
-  size?: TextStyle['fontSize'];
-  weight?: TextStyle['fontWeight'];
-  color?: TextStyle['color'];
-  opacity?: TextStyle['opacity'];
-  style?: StyleProp<TextStyle>;
-  muted?: boolean;
-  center?: boolean;
-}
+import React from 'react';
+import {StyleSheet, Text, TextStyle} from 'react-native';
+import {COLORS} from '../colors';
+import {ITypographyProps} from './Typograpy.types';
 
 export default function Typography(props: ITypographyProps) {
   const defaultStyke: TextStyle = {

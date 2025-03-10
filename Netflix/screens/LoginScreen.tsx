@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import Logo from '../components/icons/Logo.icon';
 import {COLORS} from '../lib/colors';
-import LoginForm from '../components/forms/LoginForm';
+import LoginForm from '../components/forms/LoginForm/LoginForm.component';
 
 export default function LoginScreen() {
   return (

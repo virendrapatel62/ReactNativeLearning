@@ -1,8 +1,8 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
-import HeroPoster from '../components/organisms/HeroPoster';
-import HorizontalScrollPosters from '../components/templates/HorizontalScrollPosters';
+import HeroPoster from '../components/organisms/HeroPoster/HeroPoster.component';
 import {movies} from '../lib/movies';
+import HorizontalScrollPosters from '../components/templates/HorizontalScrollPosters/HorizontalScrollPosters.component';
 
 export default function HomeScreen() {
   const categories = [
