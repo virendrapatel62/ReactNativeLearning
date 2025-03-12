@@ -52,34 +52,17 @@ export const styles = StyleSheet.create({
   ratingText: {
     textAlign: 'right',
     color: '#fff',
-    fontWeight: 600,
-    fontSize: 14,
   },
   ratingIcon: {
     width: 10,
     aspectRatio: 1,
   },
   name: {
-    fontSize: 16,
-    fontWeight: 500,
-    color: 'rgb(28, 28, 28)',
-
     maxWidth: 200,
   },
-  category: {
-    fontSize: 12,
-    fontWeight: 500,
-    color: 'rgb(105, 105, 105)',
-  },
-  price: {
-    fontSize: 12,
-    fontWeight: 500,
-    color: 'rgb(105, 105, 105)',
-  },
+  category: {},
+  price: {},
   time: {
-    fontSize: 12,
-    fontWeight: 500,
-    color: 'rgb(28, 28, 28)',
     marginTop: 8,
   },
 });
