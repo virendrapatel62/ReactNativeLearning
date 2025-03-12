@@ -4,13 +4,14 @@ import {SafeAreaView, StyleSheet, View} from 'react-native';
 import FlexLayoutPractice1 from './components/FlexLayoutPractice1.component copy';
 import FlexLayoutPractice2 from './components/FlexLayoutPractice2.component';
 import ZomatoHomeScreen from './screens/ZomatoHomeScreen/ZomatoHomeScreen.component';
+import Text from './components/atoms/Text/Text.component';
 
 function App(): React.JSX.Element {
   return (
     <View>
       <SafeAreaView style={styles.view}>
-        {/* <FlexLayoutPractice1 /> */}
-        {/* <FlexLayoutPractice2 /> */}
+        {/* <FlexLayoutPractice1 />
+        <FlexLayoutPractice2 /> */}
 
         <ZomatoHomeScreen />
       </SafeAreaView>

@@ -1,7 +1,9 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import StarIcon from '../../atoms/icons/Star.icon';
 import {styles} from './FoodCard.styes';
+import Text from '../../atoms/Text/Text.component';
+import colors from '../../atoms/colors';
 
 interface IFoodCardProps {
   image: string;
@@ -19,27 +21,31 @@ export default function FoodCard(props: IFoodCardProps) {
 
       <View style={styles.details}>
         <View style={styles.row}>
-          <Text numberOfLines={1} style={styles.name}>
+          <Text numberOfLines={2} weight={600} size={18} style={styles.name}>
             {props.name}
           </Text>
           <View style={styles.rating}>
-            <Text style={styles.ratingText}>{props.rating}</Text>
+            <Text weight={600} color={colors.textLight}>
+              {props.rating}
+            </Text>
             <StarIcon style={styles.ratingIcon} />
           </View>
         </View>
         <View style={styles.row}>
           <Text
+            color={colors.textSecondary}
+            size={12}
             numberOfLines={1}
-            style={StyleSheet.flatten([styles.category, styles.left])}>
+            style={StyleSheet.flatten([styles.left])}>
             {props.category}
           </Text>
-          <Text style={StyleSheet.flatten([styles.right, styles.price])}>
+          <Text color={colors.textSecondary} size={12} style={styles.right}>
             {props.price}
           </Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.category}></Text>
-          <Text style={StyleSheet.flatten([styles.right, styles.time])}>
+          <Text color={colors.textPrimary} size={12} style={styles.right}>
             {props.time}
           </Text>
         </View>
