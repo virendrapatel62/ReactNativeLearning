@@ -2,13 +2,14 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    padding: 8,
+  },
+  content: {
     alignItems: 'center',
-    gap: 8,
-    margin: 4,
-
-    borderRadius: 16,
     boxShadow: 'rgba(28, 28, 28, 0.12) 0px 4px 18px 0px',
+    borderRadius: 16,
+    flex: 1,
+    gap: 8,
   },
   image: {
     aspectRatio: 1.8,
