@@ -31,3 +31,13 @@ Each project has its own set of dependencies. To install them, follow these step
    ```bash
    git clone https://github.com/your-username/react-native-learning-projects.git
    ```
+
+## Screenshots
+
+Here are some screenshots of the project in action:
+
+### Zomato Home
+
+![Screenshot 2](https://iili.io/3BozGuj.gif)
+
+[View in Full Size](https://iili.io/3BozGuj.gif)
