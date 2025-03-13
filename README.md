@@ -38,6 +38,4 @@ Here are some screenshots of the project in action:
 
 ### Zomato Home
 
-![Screenshot 2](https://iili.io/3BozGuj.gif)
-
-[View in Full Size](https://iili.io/3BozGuj.gif)
+<a href="https://iili.io/3BozGuj.gif"><img src="https://iili.io/3BozGuj.gif" width="100%" alt="made with love  markdown badge" ></a>
