@@ -16,6 +16,38 @@ import SeparatorHeading from '../../components/organisms/SeparatorHeading/Separa
 import colors from '../../components/atoms/colors';
 import Restaurants from '../../components/templates/Restaurants/Restaurants.component';
 import ImageFilters from '../../components/templates/ImageFilters/ImageFilters.component';
+import Filters from '../../components/templates/Filters/Filters.component';
+import SortIcon from '../../components/atoms/icons/Sort.icon';
+import NewIcon from '../../components/atoms/icons/New.icon';
+import RupeeIcon from '../../components/atoms/icons/Rupee.icon';
+import ChevronDown from '../../components/atoms/icons/ChevronDown.icon';
+import Dropdown from '../../components/atoms/icons/Dropdown.icon';
+
+const filterOptions = [
+  {
+    label: 'Sort',
+    leftIcon: <SortIcon />,
+    rightIcon: <Dropdown />,
+  },
+  {
+    label: 'Cuisine',
+    leftIcon: <NewIcon />,
+    selected: true,
+  },
+  {
+    label: 'Price',
+    leftIcon: <RupeeIcon />,
+  },
+  {
+    label: 'Rating 4.5 +',
+  },
+  {
+    label: 'Distance',
+  },
+  {
+    label: 'Open Now',
+  },
+];
 
 export default function ZomatoHomeScreen() {
   const renderSepratorHeading = (text: string) => {
@@ -47,13 +79,13 @@ export default function ZomatoHomeScreen() {
           {renderSepratorHeading("What's on your mind")}
           <ImageFilters data={foodFilterData}></ImageFilters>
         </View>
-
         <View
           style={{
             marginVertical: 16,
           }}>
           {renderSepratorHeading('All restaurants')}
 
+          <Filters options={filterOptions} />
           <Restaurants data={foodData} />
         </View>
       </ScrollView>

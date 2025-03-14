@@ -30,8 +30,6 @@ const Flexbox: React.FC<FlexboxContainerProps> = ({
     : 'flex-start';
   const alignItems = alignItemsCenter ? 'center' : 'stretch';
 
-  console.log({justifyContent});
-
   const containerStyle: ViewStyle = {
     flexDirection,
     justifyContent,
