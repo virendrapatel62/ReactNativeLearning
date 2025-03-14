@@ -2,7 +2,7 @@ import React from 'react';
 import {TextProps, TextStyle, Text as ReactNativeText} from 'react-native';
 import colors from '../colors';
 
-interface ITextProps extends TextProps {
+export interface ITextProps extends TextProps {
   size?: TextStyle['fontSize'];
   weight?: TextStyle['fontWeight'];
   textTransform?: TextStyle['textTransform'];

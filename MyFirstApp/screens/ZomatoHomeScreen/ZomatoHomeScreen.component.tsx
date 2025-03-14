@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {
   FlatList,
   ScrollView,
@@ -12,10 +12,27 @@ import FoodFilterCard from '../../components/organisms/FoodFilterCard/FoodFilter
 import foodData from './foods.data.json';
 import LocationHeader from '../../components/organisms/LocationHeader/LocationHeader.component';
 import SearchInput from '../../components/organisms/SearchInput/SearchInput.component';
+import SeparatorHeading from '../../components/organisms/SeparatorHeading/SeparatorHeading.component';
+import colors from '../../components/atoms/colors';
+import Restaurants from '../../components/templates/Restaurants/Restaurants.component';
+import ImageFilters from '../../components/templates/ImageFilters/ImageFilters.component';
 
 export default function ZomatoHomeScreen() {
-  const {width} = useWindowDimensions();
-  const isIpad = width > 600;
+  const renderSepratorHeading = (text: string) => {
+    return (
+      <SeparatorHeading
+        textProps={{
+          size: 14,
+          color: colors.grayDark,
+          style: {
+            letterSpacing: 2,
+          },
+        }}
+        uppercase>
+        {text}
+      </SeparatorHeading>
+    );
+  };
 
   return (
     <View
@@ -24,40 +41,20 @@ export default function ZomatoHomeScreen() {
       }}>
       <LocationHeader />
       <SearchInput />
+
       <ScrollView>
-        <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={foodFilterData}
-          contentContainerStyle={{}}
-          renderItem={({item, index}) => {
-            return (
-              <FoodFilterCard
-                key={index}
-                title={item.title}
-                thumbnail={item.src}></FoodFilterCard>
-            );
-          }}></FlatList>
+        <View>
+          {renderSepratorHeading("What's on your mind")}
+          <ImageFilters data={foodFilterData}></ImageFilters>
+        </View>
 
         <View
           style={{
-            marginTop: 16,
+            marginVertical: 16,
           }}>
-          <FlatList
-            contentContainerStyle={{}}
-            numColumns={isIpad ? 2 : 1}
-            showsHorizontalScrollIndicator={false}
-            data={foodData}
-            renderItem={({item, index}) => {
-              return (
-                <FoodCard
-                  containerStyle={{
-                    width: isIpad ? '50%' : '100%',
-                  }}
-                  key={index}
-                  {...item}></FoodCard>
-              );
-            }}></FlatList>
+          {renderSepratorHeading('All restaurants')}
+
+          <Restaurants data={foodData} />
         </View>
       </ScrollView>
     </View>

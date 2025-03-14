@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgb(58, 183, 87)',
     paddingHorizontal: 8,
     borderRadius: 4,
-
+    height: 24,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
