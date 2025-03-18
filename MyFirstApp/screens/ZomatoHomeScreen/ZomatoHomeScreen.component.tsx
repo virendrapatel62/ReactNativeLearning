@@ -28,6 +28,7 @@ const filterOptions = [
     label: 'Sort',
     leftIcon: <SortIcon />,
     rightIcon: <Dropdown />,
+    selected: true,
   },
   {
     label: 'Cuisine',

@@ -1,26 +1,41 @@
 import React from 'react';
 
-import {SafeAreaView, StyleSheet, View} from 'react-native';
-import FlexLayoutPractice1 from './components/FlexLayoutPractice1.component copy';
-import FlexLayoutPractice2 from './components/FlexLayoutPractice2.component';
+import {
+  StyleSheet,
+  View,
+  SafeAreaView as SafeAreaViewIOS,
+  Platform,
+} from 'react-native';
 import ZomatoHomeScreen from './screens/ZomatoHomeScreen/ZomatoHomeScreen.component';
-import Text from './components/atoms/Text/Text.component';
+
+import {SafeAreaView} from 'react-native-safe-area-context';
+import CartScreen from './screens/CartScreen/CartScreen.component';
+import CartScreenAnkt from './screens/CartScreen/CartScreenAnkt.component';
+import IconDemoScreen from './screens/IconDemoScreen';
+
+const CurrentSafeArea = Platform.OS === 'ios' ? SafeAreaViewIOS : SafeAreaView;
 
 function App(): React.JSX.Element {
   return (
-    <View>
-      <SafeAreaView style={styles.view}>
+    <View style={styles.view}>
+      <CurrentSafeArea style={styles.view}>
         {/* <FlexLayoutPractice1 />
         <FlexLayoutPractice2 /> */}
 
-        <ZomatoHomeScreen />
-      </SafeAreaView>
+        {/* <ZomatoHomeScreen /> */}
+        {/* <CartScreen /> */}
+        {/* <CartScreenAnkt /> */}
+
+        <IconDemoScreen />
+      </CurrentSafeArea>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  view: {},
+  view: {
+    flex: 1,
+  },
 });
 
 export default App;
