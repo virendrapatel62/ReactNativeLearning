@@ -1,17 +1,16 @@
 import React from 'react';
 
 import {
+  Platform,
+  SafeAreaView as SafeAreaViewIOS,
   StyleSheet,
   View,
-  SafeAreaView as SafeAreaViewIOS,
-  Platform,
 } from 'react-native';
 import ZomatoHomeScreen from './screens/ZomatoHomeScreen/ZomatoHomeScreen.component';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
-import CartScreen from './screens/CartScreen/CartScreen.component';
-import CartScreenAnkt from './screens/CartScreen/CartScreenAnkt.component';
 import IconDemoScreen from './screens/IconDemoScreen';
+import TextInputScreen from './screens/TextInputsScreen';
 
 const CurrentSafeArea = Platform.OS === 'ios' ? SafeAreaViewIOS : SafeAreaView;
 
@@ -26,7 +25,8 @@ function App(): React.JSX.Element {
         {/* <CartScreen /> */}
         {/* <CartScreenAnkt /> */}
 
-        <IconDemoScreen />
+        {/* <IconDemoScreen /> */}
+        <TextInputScreen />
       </CurrentSafeArea>
     </View>
   );

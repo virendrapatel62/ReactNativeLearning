@@ -1,10 +1,21 @@
-import React, {Fragment, useState} from 'react';
 import Slider from '@react-native-community/slider';
+import React, {Fragment, useState} from 'react';
+
+import {
+  Button,
+  ScrollView,
+  SectionListComponent,
+  StyleSheet,
+} from 'react-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ColorWheel from 'react-native-wheel-color-picker';
 import Text from '../components/atoms/Text/Text.component';
 import Flexbox from '../components/organisms/Flexbox/Flexbox.component';
-import {ScrollView, StyleSheet, View} from 'react-native';
+
+const component = require('react-native-vector-icons/FontAwesome');
+
+console.log(component);
 
 const icons = [
   'facebook',
@@ -63,7 +74,13 @@ const icons = [
 
 export default function IconDemoScreen() {
   const [color, setColor] = useState('#000000');
-  const [iconSize, setIconSize] = useState(0); // Initial value of the slider
+  const [iconSize, setIconSize] = useState(20); // Initial value of the slider
+  const [borderRadius, setIconRadius] = useState(20); // Initial value of the slider
+  const [IconComponent, setIconComponent] = useState<Icon>();
+
+  function onIconLibClick(lib: string) {
+    // setIconComponent(Component);
+  }
 
   const handleColorChange = (newColor: string) => {
     setColor(newColor);
@@ -90,6 +107,12 @@ export default function IconDemoScreen() {
           />
         </Flexbox>
 
+        <Flexbox row>
+          {['FontAwesome', 'EvilIcons'].map(lib => (
+            <Button onPress={() => onIconLibClick(lib)} key={lib} title={lib} />
+          ))}
+        </Flexbox>
+
         <ScrollView
           style={{
             borderRadius: 16,
@@ -114,7 +137,17 @@ export default function IconDemoScreen() {
               alignItemsCenter>
               {icons.map(icon =>
                 Icon.hasIcon(icon) ? (
-                  <Icon key={icon} name={icon} size={iconSize} color={color} />
+                  <Icon
+                    style={{
+                      backgroundColor: 'lightgray',
+                      borderRadius: borderRadius,
+                      padding: 8,
+                    }}
+                    key={icon}
+                    name={icon}
+                    size={iconSize}
+                    color={color}
+                  />
                 ) : (
                   <Fragment />
                 ),
