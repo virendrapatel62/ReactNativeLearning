@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "text": "Buy groceries",
+        "completed": false
+    },
+    {
+        "id": 2,
+        "text": "Clean the house",
+        "completed": false
+    },
+    {
+        "id": 3,
+        "text": "Finish the React Native project",
+        "completed": false
+    },
+    {
+        "id": 4,
+        "text": "Call mom",
+        "completed": false
+    },
+    {
+        "id": 5,
+        "text": "Write blog post",
+        "completed": false
+    },
+    {
+        "id": 6,
+        "text": "Attend meeting at 3 PM",
+        "completed": false
+    },
+    {
+        "id": 7,
+        "text": "Workout for 30 minutes",
+        "completed": false
+    },
+    {
+        "id": 8,
+        "text": "Buy new shoes",
+        "completed": false
+    },
+    {
+        "id": 9,
+        "text": "Read a book for 1 hour",
+        "completed": false
+    },
+    {
+        "id": 10,
+        "text": "Organize workspace",
+        "completed": false
+    }
+]

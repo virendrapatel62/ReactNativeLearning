@@ -3,7 +3,8 @@
  */
 
 import {AppRegistry} from 'react-native';
-import App from './App';
 import {name as appName} from './app.json';
+import ColorChangerScreen from './screens/ColorChanger.screen';
+import TodoAppScreen from './screens/TodoApp.screen';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => TodoAppScreen);
