@@ -23,12 +23,15 @@ interface ITodoListItemProps {
   item: ITodo;
   onToggle: (id: number) => void;
   onDelete: (id: number) => void;
+  onLongPress: () => void;
 }
 
-function TodoListItem({item, onToggle, onDelete}: ITodoListItemProps) {
+function TodoListItem({item, onToggle, ...props}: ITodoListItemProps) {
   return (
     <View style={styles.item}>
-      <Text style={[styles.itemText, item.completed && styles.completedText]}>
+      <Text
+        onLongPress={props.onLongPress}
+        style={[styles.itemText, item.completed && styles.completedText]}>
         {item.text}
       </Text>
       <TouchableOpacity
@@ -58,6 +61,20 @@ function TodoAppScreen(): React.JSX.Element {
         {text: 'Delete', onPress: onDelete, style: 'destructive'},
       ],
     );
+  };
+  const handleLongPress = (index: number, todo: ITodo) => {
+    const onUpdate = (value?: string) => {
+      if (!value) return;
+
+      const updatedTodos = [...todos];
+      updatedTodos[index].text = value;
+      setTodos(updatedTodos);
+    };
+
+    Alert.prompt('Edit Todo', `You are editing ${todo.text}`, [
+      {text: 'Done', onPress: onUpdate, style: 'default'},
+      {text: 'Cancel', style: 'cancel'},
+    ]);
   };
 
   const handleToggleTodo = (id: number) => {
@@ -102,9 +119,10 @@ function TodoAppScreen(): React.JSX.Element {
           <SwipeListView
             data={todos}
             contentContainerStyle={styles.listContainerStyle}
-            renderItem={({item}) => {
+            renderItem={({item, index}) => {
               return (
                 <TodoListItem
+                  onLongPress={() => handleLongPress(index, item)}
                   item={item}
                   onToggle={handleToggleTodo}
                   onDelete={handleRemoveTodo}
