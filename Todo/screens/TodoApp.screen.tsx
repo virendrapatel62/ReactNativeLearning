@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   Alert,
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -8,13 +9,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {FlashList} from '@shopify/flash-list';
 import CheckIcon from '../components/atoms/icons/Check.icon';
 import initialTodos from '../data/todos.json';
-
-import Animated from 'react-native-reanimated';
-import {PanGestureHandler, Swipeable} from 'react-native-gesture-handler';
-import {PanGesture} from 'react-native-gesture-handler/lib/typescript/handlers/gestures/panGesture';
 import {SwipeListView} from 'react-native-swipe-list-view';
 
 interface ITodo {
@@ -49,8 +45,19 @@ function TodoAppScreen(): React.JSX.Element {
   const [inputText, setInputText] = useState('');
 
   const handleRemoveTodo = (id: number) => {
-    const updatedTodos = todos.filter(todo => todo.id !== id);
-    setTodos(updatedTodos);
+    const onDelete = () => {
+      const updatedTodos = todos.filter(todo => todo.id !== id);
+      setTodos(updatedTodos);
+    };
+
+    Alert.alert(
+      'Confirm Deletion',
+      'Are you sure you want to delete this item?',
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {text: 'Delete', onPress: onDelete, style: 'destructive'},
+      ],
+    );
   };
 
   const handleToggleTodo = (id: number) => {
@@ -94,6 +101,7 @@ function TodoAppScreen(): React.JSX.Element {
         {!!todos.length && (
           <SwipeListView
             data={todos}
+            contentContainerStyle={styles.listContainerStyle}
             renderItem={({item}) => {
               return (
                 <TodoListItem
@@ -104,27 +112,20 @@ function TodoAppScreen(): React.JSX.Element {
               );
             }}
             renderHiddenItem={(data, rowMap) => (
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <View>
-                  <TouchableOpacity
-                    onPress={() => handleRemoveTodo(data.item.id)}
-                    style={styles.deletButtonContainer}>
-                    <Text style={styles.deleteText}>Delete</Text>
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity
-                    onPress={() => handleRemoveTodo(data.item.id)}
-                    style={styles.deletButtonContainer}>
-                    <Text style={styles.deleteText}>Delete</Text>
-                  </TouchableOpacity>
-                </View>
+              <View style={styles.hiddenButtonsContainer}>
+                <TouchableOpacity
+                  onPress={() => handleRemoveTodo(data.item.id)}
+                  style={styles.deletButtonContainer}>
+                  <Text style={styles.deleteText}>Delete</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleRemoveTodo(data.item.id)}
+                  style={styles.deletButtonContainer}>
+                  <Image
+                    src="https://cdn-icons-png.flaticon.com/128/6861/6861362.png"
+                    height={28}
+                    width={28}></Image>
+                </TouchableOpacity>
               </View>
             )}
             rightOpenValue={-75}
@@ -172,15 +173,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     fontSize: 16,
   },
+
+  listContainerStyle: {
+    display: 'flex',
+    gap: 10,
+  },
+
+  hiddenButtonsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'gray',
+    height: '100%',
+  },
   button: {
     backgroundColor: 'tomato',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
+    padding: 12,
     borderRadius: 16,
   },
-
   buttonText: {
     fontSize: 20,
     color: '#fff',
@@ -193,6 +206,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
+
+    paddingHorizontal: 10,
   },
   itemText: {
     fontSize: 16,
@@ -219,8 +234,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'tomato',
+    borderColor: 'tomato',
+    borderWidth: 1,
+    backgroundColor: 'white',
     width: 75,
+    height: '100%',
   },
   deleteText: {
     color: 'white',
