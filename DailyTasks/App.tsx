@@ -4,6 +4,7 @@ import React from 'react';
 import HomeScreen from './screens/Home.screen';
 import TodoScreen from './screens/Todo.screen';
 import UsersScreen from './screens/Users/Users.screen';
+import LocationPractice from './screens/LocationPractice/LocationPractice.screen';
 
 export const screens = [
   {
@@ -17,6 +18,10 @@ export const screens = [
   {
     Component: HomeScreen,
     title: 'Home',
+  },
+  {
+    Component: LocationPractice,
+    title: 'Location Playground',
   },
 ];
 
