@@ -1,7 +1,5 @@
+import Geolocation from 'react-native-geolocation-service';
 import {isPermissionGranted, requestLocationPermission} from './permissions';
-import Geolocation, {
-  getCurrentPosition,
-} from 'react-native-geolocation-service';
 
 export async function getCurrentLocation() {
   const status = await requestLocationPermission();
