@@ -5,6 +5,7 @@ import HomeScreen from './screens/Home.screen';
 import TodoScreen from './screens/Todo.screen';
 import UsersScreen from './screens/Users/Users.screen';
 import LocationPractice from './screens/LocationPractice/LocationPractice.screen';
+import ClassComponent from './screens/ClassComponent/ClassComponents.screen';
 
 export const screens = [
   {
@@ -22,6 +23,10 @@ export const screens = [
   {
     Component: LocationPractice,
     title: 'Location Playground',
+  },
+  {
+    Component: ClassComponent,
+    title: 'Class Component',
   },
 ];
 
