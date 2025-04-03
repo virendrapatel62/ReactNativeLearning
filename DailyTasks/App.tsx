@@ -6,8 +6,15 @@ import TodoScreen from './screens/Todo.screen';
 import UsersScreen from './screens/Users/Users.screen';
 import LocationPractice from './screens/LocationPractice/LocationPractice.screen';
 import ClassComponent from './screens/ClassComponent/ClassComponents.screen';
+import InternetStatus from './screens/InternetConnection/InternetStatus.screen';
+import ContactExample from './screens/ContactExample/ContactExample.screen';
 
 export const screens = [
+  {
+    Component: ContactExample,
+    title: 'Contact Example',
+  },
+
   {
     Component: UsersScreen,
     title: 'Users',
@@ -23,6 +30,10 @@ export const screens = [
   {
     Component: LocationPractice,
     title: 'Location Playground',
+  },
+  {
+    Component: InternetStatus,
+    title: 'Internet Status',
   },
   {
     Component: ClassComponent,
