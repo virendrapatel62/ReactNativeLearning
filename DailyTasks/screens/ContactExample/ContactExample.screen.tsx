@@ -5,18 +5,25 @@ import {
   PermissionsAndroid,
   StyleSheet,
   Platform,
+  Button,
+  Modal,
+  TextInput,
+  Alert,
 } from 'react-native';
 import Contacts from 'react-native-contacts';
 import Text from '../../components/atoms/Text/Text.component';
 import {Contact} from 'react-native-contacts/type';
-
-import {check} from 'react-native-permissions';
-import {createIconSetFromFontello} from 'react-native-vector-icons';
+import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 const isAndroid = Platform.OS == 'android';
 
 export default function ContactExample() {
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [newContactName, setNewContactName] = useState('');
+  const [newContactNumber, setNewContactNumber] = useState('');
+  const [newContactEmail, setNewContactEmail] = useState('');
+  const [contactToDelete, setContactToDelete] = useState<Contact | null>(null);
 
   useEffect(() => {
     requestPermission();
@@ -25,8 +32,22 @@ export default function ContactExample() {
   const requestPermission = async () => {
     try {
       if (isAndroid) {
-        const response = await check('android.permission.READ_CONTACTS');
-        if (response == 'granted') {
+        const permission = PERMISSIONS.ANDROID.READ_CONTACTS;
+        const writePermission = PERMISSIONS.ANDROID.WRITE_CONTACTS;
+
+        const readStatus = await check(permission);
+        const writeStatus = await check(writePermission);
+
+        if (readStatus !== RESULTS.GRANTED) {
+          await request(permission);
+        }
+
+        if (writeStatus !== RESULTS.GRANTED) {
+          await request(writePermission);
+        }
+
+        const finalReadStatus = await check(permission);
+        if (finalReadStatus === RESULTS.GRANTED) {
           getContacts();
         }
       } else {
@@ -38,6 +59,8 @@ export default function ContactExample() {
   };
 
   const getContacts = async () => {
+    console.log('Getting contacts');
+
     Contacts.getAll()
       .then(contacts => {
         console.log(contacts);
@@ -48,24 +71,127 @@ export default function ContactExample() {
       );
   };
 
+  const saveContact = () => {
+    const newContact = {
+      givenName: newContactName,
+      familyName: '',
+      phoneNumbers: [
+        {
+          label: 'mobile',
+          number: newContactNumber,
+        },
+      ],
+      emailAddresses: [
+        {
+          label: 'work',
+          email: newContactEmail,
+        },
+      ],
+    };
+
+    Contacts.addContact(newContact)
+      .then(() => {
+        console.log('Contact added');
+        getContacts();
+        setModalVisible(false);
+        setNewContactName('');
+        setNewContactNumber('');
+        setNewContactEmail('');
+      })
+      .catch(err => {
+        console.error('Error saving contact:', err);
+      });
+  };
+
+  const deleteContact = (contact: Contact) => {
+    Alert.alert(
+      'Delete Contact',
+      `Are you sure you want to delete ${contact.givenName}?`,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            Contacts.deleteContact(contact)
+              .then(() => {
+                console.log('Contact deleted');
+                getContacts();
+              })
+              .catch(err => {
+                console.error('Error deleting contact:', err);
+              });
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Contacts List</Text>
+
+      <Button title="Save New Contact" onPress={() => setModalVisible(true)} />
 
       <FlatList
         data={contacts}
         keyExtractor={item => item.recordID}
         renderItem={({item}) => (
           <View style={styles.contactItem}>
-            <Text style={styles.name}>{item.givenName}</Text>
-            <Text style={styles.number}>
-              {item.phoneNumbers.length > 0
-                ? item.phoneNumbers[0].number
-                : 'No number'}
-            </Text>
+            <View>
+              <Text style={styles.name}>{item.givenName}</Text>
+              <Text style={styles.number}>
+                {item.phoneNumbers.length > 0
+                  ? item.phoneNumbers[0].number
+                  : 'No number'}
+              </Text>
+            </View>
+            <Button title="Delete" onPress={() => deleteContact(item)} />
           </View>
         )}
       />
+
+      {/* Modal for creating new contact */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Create New Contact</Text>
+
+            <TextInput
+              style={styles.input}
+              placeholder="Full Name"
+              value={newContactName}
+              onChangeText={setNewContactName}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Phone Number"
+              value={newContactNumber}
+              onChangeText={setNewContactNumber}
+              keyboardType="phone-pad"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Email Address"
+              value={newContactEmail}
+              onChangeText={setNewContactEmail}
+              keyboardType="email-address"
+            />
+
+            <View style={styles.modalButtons}>
+              <Button title="Cancel" onPress={() => setModalVisible(false)} />
+              <Button title="Save" onPress={saveContact} />
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -83,7 +209,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   contactItem: {
-    flexDirection: 'row', // नाम और नंबर को एक ही लाइन में लाने के लिए
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,
@@ -97,6 +223,38 @@ const styles = StyleSheet.create({
   },
   number: {
     fontSize: 16,
-    color: '#007bff', // Blue color for better visibility
+    color: '#007bff',
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContainer: {
+    width: 300,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  input: {
+    width: '100%',
+    padding: 10,
+    marginVertical: 5,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#ccc',
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 15,
   },
 });
