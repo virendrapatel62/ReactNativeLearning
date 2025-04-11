@@ -8,8 +8,18 @@ import LocationPractice from './screens/LocationPractice/LocationPractice.screen
 import ClassComponent from './screens/ClassComponent/ClassComponents.screen';
 import InternetStatus from './screens/InternetConnection/InternetStatus.screen';
 import ContactExample from './screens/ContactExample/ContactExample.screen';
+import ProductListScreen from './screens/ProductScreens/ProductList.screen';
+import ProductDetailsScreen from './screens/ProductScreens/ProductDetails.screen';
 
 export const screens = [
+  {
+    Component: ProductListScreen,
+    title: 'Product List',
+  },
+  {
+    Component: ProductDetailsScreen,
+    title: 'Product Details',
+  },
   {
     Component: ContactExample,
     title: 'Contact Example',

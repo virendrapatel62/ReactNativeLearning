@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {screens} from '../App';
+import App, {screens} from '../App';
 import {useNavigation} from '@react-navigation/native';
 
 export default function HomeScreen() {
