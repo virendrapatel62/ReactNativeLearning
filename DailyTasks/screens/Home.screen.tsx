@@ -1,10 +1,11 @@
 import React from 'react';
-import {FlatList, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import App, {screens} from '../App';
-import {useNavigation} from '@react-navigation/native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {screens} from '../navigation/navigation.config';
+import {useAppNavigation} from '../navigation/useAppNavigation';
+import {TScreenName} from '../navigation/navigation.types';
 
 export default function HomeScreen() {
-  const navigation = useNavigation<any>();
+  const navigation = useAppNavigation();
 
   return (
     <View style={styles.container}>
@@ -16,7 +17,7 @@ export default function HomeScreen() {
             <TouchableOpacity
               style={styles.itemContainer}
               onPress={() => {
-                navigation.navigate(item.title);
+                navigation.navigate(item.title as any);
               }}>
               <Text style={styles.itemText}>{item.title}</Text>
             </TouchableOpacity>

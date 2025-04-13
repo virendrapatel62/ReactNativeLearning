@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import axios from 'axios';
-import ProductDetailScreen from './ProductDetails.screen';
+import React, {useEffect, useState} from 'react';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ScreenNames} from '../../navigation/navigation.config';
+import {useAppNavigation} from '../../navigation/useAppNavigation';
 
-const ProductListScreen = ({navigation, ...props}) => {
+const ProductListScreen = () => {
   const [products, setProducts] = useState([]);
+  const navigation = useAppNavigation();
 
-  console.log(props);
-
-  // Fetch products from the fake API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -21,11 +20,12 @@ const ProductListScreen = ({navigation, ...props}) => {
     fetchProducts();
   }, []);
 
-  // Render each product item
-  const renderItem = ({item}) => (
+  const renderItem = ({item}: any) => (
     <TouchableOpacity
       style={styles.itemContainer}
-      onPress={() => navigation.navigate('Product Details', {product: item})}>
+      onPress={() =>
+        navigation.navigate(ScreenNames.PRODUCT_DETAIL, {product: item})
+      }>
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.price}>${item.price}</Text>
     </TouchableOpacity>
@@ -33,11 +33,7 @@ const ProductListScreen = ({navigation, ...props}) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={products}
-        keyExtractor={item => item.id.toString()}
-        renderItem={renderItem}
-      />
+      <FlatList data={products} renderItem={renderItem} />
     </View>
   );
 };
