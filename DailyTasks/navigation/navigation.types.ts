@@ -11,11 +11,14 @@ export type RootStackParamList = {
   [ScreenNames.LOCATION_PRACTICE]: undefined;
   [ScreenNames.INTERNET_STATUS]: undefined;
   [ScreenNames.CLASS_COMPONENT]: undefined;
+  [ScreenNames.MISC_SCREEN]: undefined;
+  [ScreenNames.HOME_TABS]: undefined;
 };
 
 export type TScreenName = keyof RootStackParamList;
 
 export type TScreenConfig = {
   Component: ComponentType<any>;
-  title: TScreenName;
+  name: TScreenName;
+  isTabScreen?: true;
 };

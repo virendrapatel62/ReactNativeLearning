@@ -2,7 +2,6 @@ import React from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {screens} from '../navigation/navigation.config';
 import {useAppNavigation} from '../navigation/useAppNavigation';
-import {TScreenName} from '../navigation/navigation.types';
 
 export default function HomeScreen() {
   const navigation = useAppNavigation();
@@ -11,15 +10,15 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <FlatList
         data={screens}
-        keyExtractor={item => item.title} // Unique key for each item
+        keyExtractor={item => item.name} // Unique key for each item
         renderItem={({item}) => {
           return (
             <TouchableOpacity
               style={styles.itemContainer}
               onPress={() => {
-                navigation.navigate(item.title as any);
+                navigation.navigate(item.name as any);
               }}>
-              <Text style={styles.itemText}>{item.title}</Text>
+              <Text style={styles.itemText}>{item.name}</Text>
             </TouchableOpacity>
           );
         }}

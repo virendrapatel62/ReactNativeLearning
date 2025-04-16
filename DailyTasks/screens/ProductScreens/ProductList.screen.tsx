@@ -1,6 +1,13 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {Fragment, useEffect, useState} from 'react';
+import {
+  FlatList,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {ScreenNames} from '../../navigation/navigation.config';
 import {useAppNavigation} from '../../navigation/useAppNavigation';
 
@@ -32,9 +39,11 @@ const ProductListScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <FlatList data={products} renderItem={renderItem} />
-    </View>
+    <Fragment>
+      <View style={styles.container}>
+        <FlatList data={products} renderItem={renderItem} />
+      </View>
+    </Fragment>
   );
 };
 

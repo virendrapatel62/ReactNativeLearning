@@ -3,6 +3,7 @@ import ContactExample from '../screens/ContactExample/ContactExample.screen';
 import HomeScreen from '../screens/Home.screen';
 import InternetStatus from '../screens/InternetConnection/InternetStatus.screen';
 import LocationPractice from '../screens/LocationPractice/LocationPractice.screen';
+import MiscScreen from '../screens/Misc.screen';
 import ProductDetailScreen from '../screens/ProductScreens/ProductDetails.screen';
 import ProductListScreen from '../screens/ProductScreens/ProductList.screen';
 import TodoScreen from '../screens/Todo.screen';
@@ -10,52 +11,64 @@ import UsersScreen from '../screens/Users/Users.screen';
 import {TScreenConfig} from './navigation.types';
 
 export const ScreenNames = {
-  PRODUCT_LIST: 'Product List',
-  PRODUCT_DETAIL: 'Product Details',
-  CONTACT_EXAMPLE: 'Contact Example',
+  PRODUCT_LIST: 'ProductList',
+  PRODUCT_DETAIL: 'ProductDetails',
+  CONTACT_EXAMPLE: 'ContactExample',
   USERS: 'Users',
   TODO: 'Todo',
   HOME: 'Home',
-  LOCATION_PRACTICE: 'Location Playground',
-  INTERNET_STATUS: 'Internet Status',
-  CLASS_COMPONENT: 'Class Component',
+  LOCATION_PRACTICE: 'LocationPlayground',
+  INTERNET_STATUS: 'InternetStatus',
+  CLASS_COMPONENT: 'ClassComponent',
+  MISC_SCREEN: 'MISC_SCREEN',
+  HOME_TABS: 'HOME_TABS',
+  HOME_TOP_NAVS: 'HOME_TOP_TABS',
 } as const;
 
-export const screens: TScreenConfig[] = [
+const _screens: TScreenConfig[] = [
   {
     Component: ProductListScreen,
-    title: ScreenNames.PRODUCT_LIST,
+    name: ScreenNames.PRODUCT_LIST,
   },
   {
     Component: ProductDetailScreen,
-    title: ScreenNames.PRODUCT_DETAIL,
+    name: ScreenNames.PRODUCT_DETAIL,
   },
   {
     Component: ContactExample,
-    title: ScreenNames.CONTACT_EXAMPLE,
+    name: ScreenNames.CONTACT_EXAMPLE,
   },
   {
     Component: UsersScreen,
-    title: ScreenNames.USERS,
+    name: ScreenNames.USERS,
   },
   {
     Component: TodoScreen,
-    title: ScreenNames.TODO,
+    name: ScreenNames.TODO,
   },
   {
     Component: HomeScreen,
-    title: ScreenNames.HOME,
+    isTabScreen: true,
+    name: ScreenNames.HOME,
   },
   {
     Component: LocationPractice,
-    title: ScreenNames.LOCATION_PRACTICE,
+    name: ScreenNames.LOCATION_PRACTICE,
   },
   {
     Component: InternetStatus,
-    title: ScreenNames.INTERNET_STATUS,
+    name: ScreenNames.INTERNET_STATUS,
+    isTabScreen: true,
   },
   {
     Component: ClassComponent,
-    title: ScreenNames.CLASS_COMPONENT,
+    name: ScreenNames.CLASS_COMPONENT,
+  },
+  {
+    Component: MiscScreen,
+    name: ScreenNames.MISC_SCREEN,
   },
 ];
+
+export const tabScreens = _screens.filter(screen => screen.isTabScreen);
+export const screens = _screens.filter(screen => !screen.isTabScreen);

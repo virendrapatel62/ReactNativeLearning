@@ -1,8 +1,38 @@
-import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Platform,
+  NativeModules,
+} from 'react-native';
+import {useAppNavigation} from '../../navigation/useAppNavigation';
+import {getColors} from 'react-native-image-colors';
+
+const useImageColors = () => {
+  const [colors, setColors] = React.useState(null);
+
+  React.useEffect(() => {
+    const url = 'https://i.imgur.com/68jyjZT.jpg';
+
+    getColors(url, {
+      fallback: '#228B22',
+      cache: true,
+      key: url,
+    }).then(setColors);
+  }, []);
+
+  return colors;
+};
 
 const ProductDetailScreen = ({route}) => {
-  const {product} = route.params;
+  const {product = {}} = route?.params || {};
+  useImageColors();
+
+  const [headerBgColor, setHeaderBgColor] = useState('');
+
+  const navigation = useAppNavigation();
 
   return (
     <View style={styles.container}>

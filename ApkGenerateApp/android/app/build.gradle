@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.dailytasks"
+    namespace "com.apkgenerateapp"
     defaultConfig {
-        applicationId "com.dailytasks"
+        applicationId "com.apkgenerateapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -92,12 +92,6 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        release {
-            storeFile file(DAILYTASKS_UPLOAD_STORE_FILE)
-            storePassword DAILYTASKS_UPLOAD_STORE_PASSWORD
-            keyAlias DAILYTASKS_UPLOAD_KEY_ALIAS
-            keyPassword DAILYTASKS_UPLOAD_KEY_PASSWORD
-        }
     }
     buildTypes {
         debug {
@@ -106,11 +100,9 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
+            signingConfig signingConfigs.debug
+            minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            minifyEnabled false
-            shrinkResources false
-  
         }
     }
 }
