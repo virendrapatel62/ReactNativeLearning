@@ -8,7 +8,20 @@ import Icon from 'react-native-vector-icons/Feather';
 
 const TopNav = createBottomTabNavigator();
 
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import HomeScreen from '../screens/Home.screen';
+import InternetStatus from '../screens/InternetConnection/InternetStatus.screen';
+
+const Drawer = createDrawerNavigator();
+
 function MyTopNav() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Home1" component={HomeScreen} />
+      <Drawer.Screen name="Profile1" component={InternetStatus} />
+    </Drawer.Navigator>
+  );
+
   return (
     <TopNav.Navigator
       screenOptions={{

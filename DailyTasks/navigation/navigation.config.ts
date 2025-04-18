@@ -6,6 +6,7 @@ import LocationPractice from '../screens/LocationPractice/LocationPractice.scree
 import MiscScreen from '../screens/Misc.screen';
 import ProductDetailScreen from '../screens/ProductScreens/ProductDetails.screen';
 import ProductListScreen from '../screens/ProductScreens/ProductList.screen';
+import SideDrawerScreen from '../screens/SideDrawer.screen';
 import TodoScreen from '../screens/Todo.screen';
 import UsersScreen from '../screens/Users/Users.screen';
 import {TScreenConfig} from './navigation.types';
@@ -23,6 +24,7 @@ export const ScreenNames = {
   MISC_SCREEN: 'MISC_SCREEN',
   HOME_TABS: 'HOME_TABS',
   HOME_TOP_NAVS: 'HOME_TOP_TABS',
+  SIDE_DRAWER: 'SIDE_DRAWER',
 } as const;
 
 const _screens: TScreenConfig[] = [
@@ -33,6 +35,10 @@ const _screens: TScreenConfig[] = [
   {
     Component: ProductDetailScreen,
     name: ScreenNames.PRODUCT_DETAIL,
+  },
+  {
+    Component: SideDrawerScreen,
+    name: ScreenNames.SIDE_DRAWER,
   },
   {
     Component: ContactExample,
