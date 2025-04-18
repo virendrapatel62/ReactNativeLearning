@@ -14,7 +14,7 @@ export const getCounterStyles = (dark: boolean) =>
     text: {
       fontSize: 48,
       color: dark ? '#fff' : '#000',
-      borderRadius: 8,
+      borderRadius: '50%',
       borderWidth: 1,
       padding: 50,
       borderColor: dark ? '#fff' : '#000',
