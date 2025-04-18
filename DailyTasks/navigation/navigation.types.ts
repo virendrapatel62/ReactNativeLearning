@@ -14,6 +14,7 @@ export type RootStackParamList = {
   [ScreenNames.MISC_SCREEN]: undefined;
   [ScreenNames.HOME_TABS]: undefined;
   [ScreenNames.SIDE_DRAWER]: undefined;
+  [ScreenNames.CONTEXT_API_EXAMPLE]: undefined;
 };
 
 export type TScreenName = keyof RootStackParamList;

@@ -1,5 +1,6 @@
 import ClassComponent from '../screens/ClassComponent/ClassComponents.screen';
 import ContactExample from '../screens/ContactExample/ContactExample.screen';
+import ContextApiExampleScreen from '../screens/ContextApi.screen';
 import HomeScreen from '../screens/Home.screen';
 import InternetStatus from '../screens/InternetConnection/InternetStatus.screen';
 import LocationPractice from '../screens/LocationPractice/LocationPractice.screen';
@@ -25,6 +26,7 @@ export const ScreenNames = {
   HOME_TABS: 'HOME_TABS',
   HOME_TOP_NAVS: 'HOME_TOP_TABS',
   SIDE_DRAWER: 'SIDE_DRAWER',
+  CONTEXT_API_EXAMPLE: 'CONTEXT_API_EXAMPLE',
 } as const;
 
 const _screens: TScreenConfig[] = [
@@ -35,6 +37,10 @@ const _screens: TScreenConfig[] = [
   {
     Component: ProductDetailScreen,
     name: ScreenNames.PRODUCT_DETAIL,
+  },
+  {
+    Component: ContextApiExampleScreen,
+    name: ScreenNames.CONTEXT_API_EXAMPLE,
   },
   {
     Component: SideDrawerScreen,
