@@ -12,8 +12,14 @@ export const getCounterStyles = (dark: boolean) =>
       backgroundColor: dark ? '#222' : '#fff',
     },
     text: {
-      fontSize: 32,
+      fontSize: 48,
       color: dark ? '#fff' : '#000',
+      borderRadius: 8,
+      borderWidth: 1,
+      padding: 50,
+      borderColor: dark ? '#fff' : '#000',
+      marginBottom: 28,
+      display: 'flex',
     },
     button: {
       fontSize: 16,
@@ -35,7 +41,7 @@ const Counter: React.FC = () => {
 
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.text]}>Counter: {count}</Text>
+      <Text style={[styles.text]}>{count}</Text>
       <TouchableOpacity onPress={() => setCount(count + 1)}>
         <Text style={styles.button}>Increase</Text>
       </TouchableOpacity>
