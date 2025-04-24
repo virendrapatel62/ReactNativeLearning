@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 import {ThemeProvider, useTheme} from './ThemeContext';
+import {ContextComposer, useColor, useShape} from './ComposerContext';
 
 export const getCounterStyles = (dark: boolean) =>
   StyleSheet.create({
@@ -21,6 +22,21 @@ export const getCounterStyles = (dark: boolean) =>
       marginBottom: 28,
       display: 'flex',
     },
+    textContainer: {
+      borderRadius: 18,
+      borderWidth: 1,
+      height: 50,
+      width: 200,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+
+      marginVertical: 18,
+    },
+    simpleText: {
+      fontSize: 20,
+      color: dark ? '#fff' : '#000',
+    },
     button: {
       fontSize: 16,
       padding: 8,
@@ -37,7 +53,10 @@ const Counter: React.FC = () => {
   const [count, setCount] = useState<number>(0);
   const {dark, toggleTheme} = useTheme();
 
-  const styles = getCounterStyles(dark);
+  const color = useColor();
+  const shape = useShape();
+
+  const styles = useMemo(() => getCounterStyles(dark), [dark]);
 
   return (
     <View style={[styles.container]}>
@@ -48,35 +67,22 @@ const Counter: React.FC = () => {
       <TouchableOpacity onPress={toggleTheme}>
         <Text style={styles.button}>Change Theme</Text>
       </TouchableOpacity>
+
+      <View style={styles.textContainer}>
+        <Text style={[styles.simpleText]}>{color}</Text>
+      </View>
+
+      <View style={styles.textContainer}>
+        <Text style={[styles.simpleText]}>{shape}</Text>
+      </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-  darkContainer: {
-    backgroundColor: '#222',
-  },
-
-  text: {
-    fontSize: 32,
-    color: '#000',
-  },
-  textDark: {
-    color: '#fff',
-  },
-});
-
 export default function CounterAppContextScreen() {
   return (
-    <ThemeProvider>
+    <ContextComposer>
       <Counter />
-    </ThemeProvider>
+    </ContextComposer>
   );
 }
