@@ -32,6 +32,11 @@ Each project has its own set of dependencies. To install them, follow these step
    git clone https://github.com/your-username/react-native-learning-projects.git
    ```
 
+## Packages
+
+- https://github.com/Flipkart/recyclerlistview
+- https://www.npmjs.com/package/@shopify/flash-list
+
 ## Screenshots
 
 Here are some screenshots of the project in action:
