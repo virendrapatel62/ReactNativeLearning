@@ -36,13 +36,3 @@ Each project has its own set of dependencies. To install them, follow these step
 
 - https://github.com/Flipkart/recyclerlistview
 - https://www.npmjs.com/package/@shopify/flash-list
-
-## Screenshots
-
-Here are some screenshots of the project in action:
-
-### Zomato Home
-
-![Screenshot 2](https://iili.io/3BoFJpI.md.png)
-
-[View in Full Size](https://freeimage.host/i/3BoFJpI)
