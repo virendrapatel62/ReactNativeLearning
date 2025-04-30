@@ -2,6 +2,8 @@ import ClassComponent from '../screens/ClassComponent/ClassComponents.screen';
 import ContactExample from '../screens/ContactExample/ContactExample.screen';
 import ContextApiExampleScreen from '../screens/ContextApi.screen';
 import CounterAppContextScreen from '../screens/CounterAppContext/CounterAppContext.screen';
+import DeviceInfoScreen from '../screens/DeviceInfo.screen';
+import FilePickerScreen from '../screens/FilePicker.screen';
 import HomeScreen from '../screens/Home.screen';
 import InternetStatus from '../screens/InternetConnection/InternetStatus.screen';
 import LocationPractice from '../screens/LocationPractice/LocationPractice.screen';
@@ -29,12 +31,22 @@ export const ScreenNames = {
   SIDE_DRAWER: 'SIDE_DRAWER',
   CONTEXT_API_EXAMPLE: 'CONTEXT_API_EXAMPLE',
   COUNTER_APP_CONTEXT: 'COUNTER_APP_CONTEXT',
+  DEVICE_INFO: 'DEVICE_INFO',
+  FILE_PICKER: 'FILE_PICKER',
 } as const;
 
 const _screens: TScreenConfig[] = [
   {
     Component: ProductListScreen,
     name: ScreenNames.PRODUCT_LIST,
+  },
+  {
+    Component: DeviceInfoScreen,
+    name: ScreenNames.DEVICE_INFO,
+  },
+  {
+    Component: FilePickerScreen,
+    name: ScreenNames.FILE_PICKER,
   },
   {
     Component: ProductDetailScreen,
