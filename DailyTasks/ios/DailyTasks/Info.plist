@@ -36,6 +36,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Playing with the location</string>
 
+	<key>NSFaceIDUsageDescription</key>
+<string>We use Face ID to authenticate you</string>
+
 	<key>NSContactsUsageDescription</key>
 	<string>We need access to your contacts for better experience</string>
 

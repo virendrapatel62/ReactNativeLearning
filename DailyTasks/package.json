@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@react-native-community/netinfo": "^11.4.1",
-    "@react-native-documents/picker": "^10.1.2",
-    "@react-native-documents/viewer": "^1.0.1",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/drawer": "^7.3.9",
     "@react-navigation/elements": "^2.3.1",
@@ -20,6 +18,7 @@
     "axios": "^1.8.4",
     "react": "19.0.0",
     "react-native": "0.78.1",
+    "react-native-biometrics": "^3.0.1",
     "react-native-contacts": "^8.0.4",
     "react-native-device-info": "^14.0.4",
     "react-native-geolocation-service": "^5.3.1",

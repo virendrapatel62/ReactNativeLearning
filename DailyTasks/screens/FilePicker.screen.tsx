@@ -1,12 +1,10 @@
 import React from 'react';
 import {Button, View} from 'react-native';
 import Text from '../components/atoms/Text/Text.component';
-import {pick} from '@react-native-documents/picker';
 
 export default async function FilePickerScreen() {
   return (
-
-     <Text>Hello</Text>
+    <Text>Hello</Text>
     // <View>
     //   <Text fontSize={28} color="black">
     //     File Picker
