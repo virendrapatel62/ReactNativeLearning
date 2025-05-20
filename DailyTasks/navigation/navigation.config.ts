@@ -9,6 +9,7 @@ import LocationPractice from '../screens/LocationPractice/LocationPractice.scree
 import MiscScreen from '../screens/Misc.screen';
 import ProductDetailScreen from '../screens/ProductScreens/ProductDetails.screen';
 import ProductListScreen from '../screens/ProductScreens/ProductList.screen';
+import ScreenProtected from '../screens/ScreenProtected';
 import SideDrawerScreen from '../screens/SideDrawer.screen';
 import TodoScreen from '../screens/Todo.screen';
 import UsersScreen from '../screens/Users/Users.screen';
@@ -32,6 +33,7 @@ export const ScreenNames = {
   COUNTER_APP_CONTEXT: 'COUNTER_APP_CONTEXT',
   DEVICE_INFO: 'DEVICE_INFO',
   FILE_PICKER: 'FILE_PICKER',
+  PROTECTED: 'PROTECTED',
 } as const;
 
 const _screens: TScreenConfig[] = [
@@ -43,7 +45,10 @@ const _screens: TScreenConfig[] = [
     Component: DeviceInfoScreen,
     name: ScreenNames.DEVICE_INFO,
   },
-
+  {
+    Component: ScreenProtected,
+    name: ScreenNames.PROTECTED,
+  },
   {
     Component: ProductDetailScreen,
     name: ScreenNames.PRODUCT_DETAIL,

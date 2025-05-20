@@ -18,6 +18,7 @@ export type RootStackParamList = {
   [ScreenNames.COUNTER_APP_CONTEXT]: undefined;
   [ScreenNames.DEVICE_INFO]: undefined;
   [ScreenNames.FILE_PICKER]: undefined;
+  [ScreenNames.PROTECTED]: undefined;
 };
 
 export type TScreenName = keyof RootStackParamList;

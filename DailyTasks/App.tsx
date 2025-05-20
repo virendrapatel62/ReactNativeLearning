@@ -6,15 +6,21 @@ import ReactNativeBiometrics from 'react-native-biometrics';
 import Flexbox from './components/atoms/FlexBox/Flexbox.component';
 import Text from './components/atoms/Text/Text.component';
 
+const disableAuthentication = true;
+
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(disableAuthentication);
+  const [isAuthenticating, setIsAuthenticating] = useState(
+    !disableAuthentication,
+  );
 
   useEffect(() => {
     console.log('@App mounted');
 
     try {
-      authenticateUser();
+      if (!disableAuthentication) {
+        authenticateUser();
+      }
     } catch (error) {
       console.log(error);
     }
