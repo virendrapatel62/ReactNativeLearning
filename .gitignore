@@ -128,3 +128,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+PushNotification/nodepushnoficationservice/serviceAccountKey.json
+PushNotification/android/app/google-services.json
