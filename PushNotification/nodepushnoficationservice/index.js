@@ -8,48 +8,44 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-const targetToken = `cgsbQEfgT6eagRVimVYqUV:APA91bHRnWykZBISKb-QZ_5eheyN1BBLcPH5Tdzv8Pped-dtW2ODccDRnO7G7h6ih1UK2iGEDvLnNhDNrVXzd68jeQwR_xPFsUvFX9ghagj1SBF3sw9s3QA`;
+const targetToken = `eEAbbGOSRLy-l84ycv3RjW:APA91bFrOXAZuGdvSjvmt1wRwhoVIFW81RMiJu4uxGee3DOK9Y_Wx0sAiGSnHIKdbxhCKjS2Nh1SBWYwBdls9SS57k1AnMeO_USMl-4h-PetPqmjtrpEmYk`;
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+async function sendNotification(type = 'todo', id = 1) {
+  let message;
 
-function askQuestion(query) {
-  return new Promise(resolve => rl.question(query, resolve));
-}
-
-async function sendNotification() {
-  while (true) {
-    const title = await askQuestion(
-      'Enter notification title (or type "exit" to quit): ',
-    );
-    if (title.toLowerCase() === 'exit') break;
-
-    const body = await askQuestion('Enter notification body: ');
-
-    const message = {
+  if (type === 'product') {
+    message = {
       token: targetToken,
       notification: {
-        title,
-        body,
+        title: 'New Product Alert!',
+        body: 'Check out the latest T90 shoes!',
       },
       data: {
-        // You can add any custom key-value data here
-        customData: 'someData',
+        screenType: 'ProductDetails',
+        id: String(id),
       },
     };
-
-    try {
-      const response = await admin.messaging().send(message);
-      console.log('✅ Successfully sent message:', response);
-    } catch (error) {
-      console.error('❌ Error sending message:', error);
-    }
+  } else if (type === 'todo') {
+    message = {
+      token: targetToken,
+      notification: {
+        title: 'Todo overdew!',
+        body: 'Your todo #1 has overdew!',
+      },
+      data: {
+        screenType: 'TodoDetails',
+        id: String(id),
+      },
+    };
   }
 
-  rl.close();
-  console.log('Exiting...');
+  try {
+    const response = await admin.messaging().send(message);
+    console.log('✅ Successfully sent message:', response);
+  } catch (error) {
+    console.error('❌ Error sending message:', error);
+  }
 }
 
-sendNotification();
+// sendNotification('todo', 10);
+sendNotification('product', 10);

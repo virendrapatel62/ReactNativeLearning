@@ -3,6 +3,10 @@ import {Text, View, Alert} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import PushNotificationScreen from './screens/PushNotificationSetup';
+import ProductDetailsScreen from './screens/ProductDetails.screen';
+import TodoDetailsScreen from './screens/TodoDetails.screen';
+import PushNotificationSetup from './screens/PushNotificationSetup';
 
 // Screens
 function HomeScreen() {
@@ -21,29 +25,6 @@ function ProfileScreen({route}) {
   );
 }
 
-// Push Notification Permission
-async function requestUserPermission() {
-  const authStatus = await messaging().requestPermission();
-  const enabled =
-    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-  if (enabled) {
-    console.log('Authorization status:', authStatus);
-  }
-}
-
-const getToken = async () => {
-  try {
-    const fcmToken = await messaging().getToken();
-    if (fcmToken) {
-      console.log('FCM Token:', fcmToken);
-    }
-  } catch (err) {
-    console.error('FCM token error:', err);
-  }
-};
-
 // Deep Linking Config
 const linking = {
   prefixes: ['virendra://'],
@@ -60,9 +41,13 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer linking={linking}>
+      <PushNotificationSetup />
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+
+        <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
+        <Stack.Screen name="TodoDetails" component={TodoDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
